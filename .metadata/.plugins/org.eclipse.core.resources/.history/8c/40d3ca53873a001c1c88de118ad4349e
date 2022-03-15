@@ -1,0 +1,24 @@
+/*-----------------------------------------------------------------
+ * [FILE NAME]: HMI_FUNCTIONS.h
+ *
+ * [AUTHOR]: YOUSEF KHALED AHMED ZAYED
+ *
+ * [DATE CREATED]: 31/10/2021
+ *
+ * [DESCRIPTION]: header file for FUNCTIONS used in HMI-ECU
+ ------------------------------------------------------------------*/
+
+#ifndef HMI_FUNCTIONS_H_
+#define HMI_FUNCTIONS_H_
+
+#include "std_types.h"
+
+/*******************************************************
+ *              functions prototype                    *
+ *******************************************************/
+void HMI_firstTimePassword (uint8* pass_ptr);
+
+
+
+
+#endif /* HMI_FUNCTIONS_H_ */

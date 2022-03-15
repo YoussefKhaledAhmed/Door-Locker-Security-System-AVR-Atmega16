@@ -1,0 +1,46 @@
+23:05:11 **** Build of configuration Debug for project buzzer ****
+make all 
+Building file: ../buzzer.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"buzzer.d" -MT"buzzer.o" -c -o "buzzer.o" "../buzzer.c"
+Finished building: ../buzzer.c
+ 
+Building file: ../ex.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"ex.d" -MT"ex.o" -c -o "ex.o" "../ex.c"
+In file included from ../ex.c:9:
+c:/winavr-20100110/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+Finished building: ../ex.c
+ 
+Building file: ../gpio.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"gpio.d" -MT"gpio.o" -c -o "gpio.o" "../gpio.c"
+Finished building: ../gpio.c
+ 
+Building target: buzzer.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,buzzer.map -mmcu=atmega16 -o "buzzer.elf"  ./buzzer.o ./ex.o ./gpio.o   
+Finished building target: buzzer.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S buzzer.elf  >"buzzer.lss"
+Finished building: buzzer.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 buzzer.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    5078 bytes (31.0% Full)
+(.text + .data + .bootloader)
+
+Data:          8 bytes (0.8% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+23:05:13 Build Finished. 0 errors, 1 warnings. (took 1s.185ms)
+

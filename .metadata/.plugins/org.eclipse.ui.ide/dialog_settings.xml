@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="SmartImportWizard">
+		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
+		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
+		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="D:\EMBEDDED DIPLOMA\DERIVERS\buzzer"/>
+			<item value="D:\EMBEDDED DIPLOMA\my trails\mini_project3"/>
+			<item value="D:\EMBEDDED DIPLOMA\Final project\eclipse_finalProject\timer_test"/>
+			<item value="D:\EMBEDDED DIPLOMA\DERIVERS\I2C"/>
+			<item value="D:\EMBEDDED DIPLOMA\3,5.interfacing\3. interfacing_1\4.Timers\Timers_Eclipse_WS"/>
+			<item value="D:\EMBEDDED DIPLOMA\DERIVERS\UART"/>
+			<item value="D:\EMBEDDED DIPLOMA\Final project\eclipse_finalProject\CONTROL-ECU"/>
+			<item value="D:\EMBEDDED DIPLOMA\3,5.interfacing\5. interfacing_2\9.ICU"/>
+			<item value="D:\EMBEDDED DIPLOMA\my trails"/>
+			<item value="D:\EMBEDDED DIPLOMA\3,5.interfacing\5. interfacing_2\12.I2C\I2C_Eclipse_WS"/>
+			<item value="D:\EMBEDDED DIPLOMA\DERIVERS"/>
+			<item value="D:\EMBEDDED DIPLOMA\3,5.interfacing\5. interfacing_2\9.ICU\ICU_Eclipse_WS"/>
+			<item value="D:\EMBEDDED DIPLOMA\3,5.interfacing\5. interfacing_2\10.USART\UART_Eclipse_WS"/>
+			<item value="D:\EMBEDDED DIPLOMA\3,5.interfacing\5. interfacing_2\10.USART\Proteus_Simulation"/>
+			<item value="D:\EMBEDDED DIPLOMA\my trails\mini_project3\project3"/>
+			<item value="D:\EMBEDDED DIPLOMA\DERIVERS\LCD"/>
+		</list>
+	</section>
+</section>

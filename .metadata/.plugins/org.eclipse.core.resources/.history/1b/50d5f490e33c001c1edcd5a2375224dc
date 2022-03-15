@@ -1,0 +1,21 @@
+/*-------------------------------------------------------
+ * [FILE NAME]: HMI-ECU.c
+ *
+ * [AUTHOR]: YOUSEF KHALED AHMED ZAYED
+ *
+ * [DATE CREATED]: 27/10/2021
+ *
+ * [DESCRIPTION]: source file for HMI-ECU
+ -------------------------------------------------------*/
+
+#include "CONTROL_FUNCTIONS.h"
+#include "uart.h"
+
+int main()
+{
+	int password[5] = {};
+	int confirm[5] = {1,2,3,4,5} , num = 0;
+	CONTROL_init();
+	CONTROL_receiveThePassword(password);
+	HMI_sendPassword(password);
+}

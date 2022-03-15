@@ -1,0 +1,83 @@
+23:38:51 **** Build of configuration Debug for project CONTROL-ECU ****
+make all 
+Building file: ../CONTROL-ECU.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"CONTROL-ECU.d" -MT"CONTROL-ECU.o" -c -o "CONTROL-ECU.o" "../CONTROL-ECU.c"
+In file included from ../CONTROL-ECU.c:15:
+c:/winavr-20100110/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+Finished building: ../CONTROL-ECU.c
+ 
+Building file: ../CONTROL_FUNCTIONS.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"CONTROL_FUNCTIONS.d" -MT"CONTROL_FUNCTIONS.o" -c -o "CONTROL_FUNCTIONS.o" "../CONTROL_FUNCTIONS.c"
+In file included from ../CONTROL_FUNCTIONS.c:13:
+c:/winavr-20100110/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+../CONTROL_FUNCTIONS.c: In function 'CONTROL_savePassword':
+../CONTROL_FUNCTIONS.c:57: warning: overflow in implicit constant conversion
+../CONTROL_FUNCTIONS.c: In function 'CONTROL_checkPassword':
+../CONTROL_FUNCTIONS.c:107: warning: passing argument 1 of 'TIMER_setCallBack' from incompatible pointer type
+../CONTROL_FUNCTIONS.c:122: warning: passing argument 1 of 'TIMER_setCallBack' from incompatible pointer type
+Finished building: ../CONTROL_FUNCTIONS.c
+ 
+Building file: ../buzzer.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"buzzer.d" -MT"buzzer.o" -c -o "buzzer.o" "../buzzer.c"
+Finished building: ../buzzer.c
+ 
+Building file: ../dc_motor.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"dc_motor.d" -MT"dc_motor.o" -c -o "dc_motor.o" "../dc_motor.c"
+Finished building: ../dc_motor.c
+ 
+Building file: ../external_eeprom.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"external_eeprom.d" -MT"external_eeprom.o" -c -o "external_eeprom.o" "../external_eeprom.c"
+Finished building: ../external_eeprom.c
+ 
+Building file: ../gpio.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"gpio.d" -MT"gpio.o" -c -o "gpio.o" "../gpio.c"
+Finished building: ../gpio.c
+ 
+Building file: ../timer.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"timer.d" -MT"timer.o" -c -o "timer.o" "../timer.c"
+../timer.c: In function 'TIMER_setCallBack':
+../timer.c:240: warning: function return types not compatible due to 'volatile'
+../timer.c:240: warning: assignment from incompatible pointer type
+Finished building: ../timer.c
+ 
+Building file: ../twi.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"twi.d" -MT"twi.o" -c -o "twi.o" "../twi.c"
+Finished building: ../twi.c
+ 
+Building file: ../uart.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"uart.d" -MT"uart.o" -c -o "uart.o" "../uart.c"
+Finished building: ../uart.c
+ 
+Building target: CONTROL-ECU.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,CONTROL-ECU.map -mmcu=atmega16 -o "CONTROL-ECU.elf"  ./CONTROL-ECU.o ./CONTROL_FUNCTIONS.o ./buzzer.o ./dc_motor.o ./external_eeprom.o ./gpio.o ./timer.o ./twi.o ./uart.o   
+Finished building target: CONTROL-ECU.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S CONTROL-ECU.elf  >"CONTROL-ECU.lss"
+Finished building: CONTROL-ECU.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 CONTROL-ECU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    8842 bytes (54.0% Full)
+(.text + .data + .bootloader)
+
+Data:         35 bytes (3.4% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 

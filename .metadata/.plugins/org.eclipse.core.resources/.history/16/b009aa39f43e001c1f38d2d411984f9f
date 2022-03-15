@@ -1,0 +1,231 @@
+/*-----------------------------------------------------------------
+ * [FILE NAME]: HMI_FUNCTIONS.c
+ *
+ * [AUTHOR]: YOUSEF KHALED AHMED ZAYED
+ *
+ * [DATE CREATED]: 31/10/2021
+ *
+ * [DESCRIPTION]: source file for FUNCTIONS used in HMI-ECU
+ ------------------------------------------------------------------*/
+
+#include "HMI_FUNCTIONS.h"
+#include "lcd.h"
+#include "keypad.h"
+#include "uart.h"
+#include "timer.h"
+#include <avr/delay.h>
+
+
+extern uint8 tick;
+
+void HMI_init (void)
+{
+	uart_config configuration = {EIGHT_BITS , DISABLED , ONE_BIT , 9600};
+	UART_init(&configuration);
+	LCD_init();
+}
+
+/*
+ * input: void
+ * return: password array
+ * description:it basically a function that is responsible for taking the password
+ * for the first time and confirming it then returning the array that contains the password
+ * to the main function for the next step
+ */
+void HMI_firstTimeOrChangePassword (uint8 *const pass_ptr){
+	/* **************************  variables definition  ************************************
+	 * confirm_pass[5]: is a temporary array that holds the confirmation password.          *
+	 * pass_index: is the index that will loop on the password digits.                      *
+	 * end_key: is the password that works as an indication that the user ends entering.    *
+	 * the password.                                                                        *
+	 * passwords_ptr[2]: is an array of pointers that contains the address of these arrays. *
+	 * check_loop: is the index used in the 2 passwords matching check loop.                *
+	 * check_2_passwords: is a number used to check if all the elements in the password and *
+	 * the confirmation password are exact the same.                                        *
+	 * **************************************************************************************/
+
+	uint8 confirm_pass[5] = {0} , password_index = 0 , end_key = 0 ;
+	uint8 *passwords_ptr[2] = {pass_ptr , confirm_pass} , check_loop = 0 , check_2_passwords = 0;
+
+	do{
+		LCD_clearScreen();
+		LCD_displayString("please enter the password:");
+		LCD_moveCursor(1, 0);
+		for (int loop = 0 ; loop < 2 ; loop++)
+		{
+			for(password_index = 0 ; password_index < 5 ; password_index++)
+			{
+
+				(passwords_ptr[loop])[password_index] = KEYPAD_getPressedKey();
+				_delay_ms(1500);
+				//LCD_displayCharacter('*');
+				LCD_intgerToString((passwords_ptr[loop])[password_index]);
+			}
+			while(1)
+			{
+				end_key = KEYPAD_getPressedKey();
+				if(end_key == '=')
+					break;
+			}
+			LCD_clearScreen();
+			LCD_displayStringRowColumn(0, 0, "please confirm it:");
+			LCD_moveCursor(1, 0);
+			_delay_ms(1500);
+		}
+		for(check_loop = 0 ; check_loop < 5 ; check_loop++)
+		{
+			if(pass_ptr[check_loop] != confirm_pass[check_loop])
+			{
+				check_2_passwords = 9;
+				break;
+			}
+			else
+			{
+				check_2_passwords = 0;
+			}
+		}
+		if(9 == check_2_passwords)
+		{
+			LCD_displayStringRowColumn(0, 0, "the 2 passwords ");
+			LCD_displayStringRowColumn(1, 0, "don't match");
+			_delay_ms(5000);
+		}
+	}while(9 == check_2_passwords);
+}
+
+void HMI_sendPassword (uint8* const pass_ptr)
+{
+	UART_sendByte(ready);
+	while (UART_receiveByte() != ready){}
+	for (uint8 i = 0 ; i < 5 ; i++)
+	{
+		UART_sendByte(pass_ptr[i]);
+	}
+}
+
+uint8 HMI_mainMenu (void)
+{
+	LCD_clearScreen();
+	LCD_displayString("+: open door");
+	LCD_displayStringRowColumn(1, 0,"-: change pass");
+	while(1)
+	{
+		if((KEYPAD_getPressedKey()=='-')||(KEYPAD_getPressedKey()=='+'))
+			break;
+	}
+	return KEYPAD_getPressedKey();
+}
+
+void HMI_openOrError (uint8* const pass_ptr , uint8 main_menu_choice)
+{
+	uint8 check = 0 , count = 0;
+	pass_ptr[1] = 0;
+
+	uint8 end_key = 0 ;
+	LCD_clearScreen();
+	LCD_displayString("please reenter the");
+	LCD_displayStringRowColumn(1, 0, "password:");
+	do{
+	for(uint8 i = 0 ; i < 5 ; i++)
+	{
+		_delay_ms(1500);
+		pass_ptr[i] = KEYPAD_getPressedKey();
+		//LCD_displayCharacter('*');
+		LCD_intgerToString(pass_ptr[i]);
+//		_delay_ms(1500);
+	}
+	while(1)
+	{
+		end_key = KEYPAD_getPressedKey();
+		if(end_key == '=')
+			break;
+	}
+	HMI_sendPassword(pass_ptr);
+	while(UART_receiveByte() != ready){}
+	if(UART_receiveByte() == wrong)
+	{
+		check = 1;
+		count++;
+		LCD_clearScreen();
+		LCD_displayString("the password is wrong please");
+		LCD_displayStringRowColumn(1, 0, "try again: ");
+	}
+	else
+	{
+		check = 0 ;
+		break;
+	}
+	}while((check == 1) && (count<3));
+
+	if((count == 3)&&(check==1))
+	{
+		TIMER_configType error_configuration = {timer1, TIMER1_CTC , 0 , 65535 ,interrupt , FCPU_1024};
+		LCD_clearScreen();
+		TIMER_setCallBack(HMI_errorMessage);
+		TIMER_init(&error_configuration);
+		LCD_displayString("move away or i will call the");
+		LCD_displayStringRowColumn(1, 0, "Police!");
+		while(tick < 8){}
+		tick = 0 ;
+	}
+	else
+	{
+		UART_sendByte(ready);
+		UART_sendByte(main_menu_choice);
+		TIMER_configType configuration = {timer1, TIMER1_CTC , 0 , 7813 ,interrupt , FCPU_1024};
+		if(main_menu_choice == '+')
+		{
+			LCD_clearScreen();
+			TIMER_setCallBack(HMI_openingdoor);
+			TIMER_init(&configuration);
+			LCD_clearScreen();
+			LCD_displayString("the door is opening...");
+			while(tick<=15){}
+			LCD_clearScreen();
+			LCD_displayString("the door is opened");
+			while(tick<=18){}
+			LCD_clearScreen();
+			LCD_displayString("the door is closing...");
+			while((tick<=33)&&(tick!=0)){}
+			LCD_clearScreen();
+			LCD_displayString("end");
+		}
+		else if(main_menu_choice == '-')
+		{
+			HMI_firstTimeOrChangePassword(pass_ptr);
+			HMI_sendPassword(pass_ptr);
+		}
+	}
+}
+
+
+void CONTROL_receiveThePassword (uint8* const pass_ptr)
+{
+	while (UART_receiveByte() != ready){}
+	UART_sendByte(ready);
+	for(uint8 i = 0 ; i < 5 ; i++)
+	{
+		pass_ptr[i] = UART_receiveByte();
+	}
+}
+
+
+void HMI_errorMessage (void)
+{
+	if(tick==8)
+	{
+		TIMER_deInit();
+	}
+}
+
+void HMI_openingdoor (void)
+{
+	if(tick>33)
+	{
+		TIMER_deInit();
+		tick = 0;
+	}
+}
+
+
+

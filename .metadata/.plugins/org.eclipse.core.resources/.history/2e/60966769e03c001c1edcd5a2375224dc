@@ -1,0 +1,36 @@
+/*-------------------------------------------------------
+ * [FILE NAME]: HMI-ECU.c
+ *
+ * [AUTHOR]: YOUSEF KHALED AHMED ZAYED
+ *
+ * [DATE CREATED]: 27/10/2021
+ *
+ * [DESCRIPTION]: source file for HMI-ECU
+ -------------------------------------------------------*/
+
+#include "HMI_FUNCTIONS.h"
+#include "uart.h"
+#include "lcd.h"
+
+int main()
+{
+	int password[5] = {};
+	HMI_init();
+	HMI_firstTimeOrChangePassword(password);
+	HMI_sendPassword(password);
+	while (UART_receiveByte() != ready){}
+	UART_sendByte(ready);
+	if (UART_receiveByte() == right)
+	{
+		LCD_clearScreen();
+		LCD_displayCharacter('9');
+	}
+}
+
+
+
+
+
+
+
+

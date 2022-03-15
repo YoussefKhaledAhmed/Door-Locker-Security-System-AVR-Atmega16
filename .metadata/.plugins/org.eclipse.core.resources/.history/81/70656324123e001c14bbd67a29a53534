@@ -1,0 +1,29 @@
+/*-------------------------------------------------------
+ * [FILE NAME]: HMI-ECU.c
+ *
+ * [AUTHOR]: YOUSEF KHALED AHMED ZAYED
+ *
+ * [DATE CREATED]: 27/10/2021
+ *
+ * [DESCRIPTION]: source file for HMI-ECU
+ -------------------------------------------------------*/
+
+#include "CONTROL_FUNCTIONS.h"
+#include "uart.h"
+#include "external_eeprom.h"
+#include <util/delay.h>
+
+int main()
+{
+	uint8 password[5] = {};
+	CONTROL_init();
+	CONTROL_receiveThePassword(password);
+	CONTROL_savePassword(password);
+	for(uint8 j = 0 ; j < 5 ; j++){
+		uint16 adress = 0x0311+j ;
+	EEPROM_readByte(adress, password+j);
+	_delay_ms(1000);
+	}
+	HMI_sendPassword(password);
+
+}

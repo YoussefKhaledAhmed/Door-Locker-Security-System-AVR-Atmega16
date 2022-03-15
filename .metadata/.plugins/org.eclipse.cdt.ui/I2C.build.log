@@ -1,0 +1,53 @@
+23:05:09 **** Build of configuration Debug for project I2C ****
+make all 
+Building file: ../External_EEPROM_I2C.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"External_EEPROM_I2C.d" -MT"External_EEPROM_I2C.o" -c -o "External_EEPROM_I2C.o" "../External_EEPROM_I2C.c"
+In file included from ../External_EEPROM_I2C.c:12:
+c:/winavr-20100110/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+../External_EEPROM_I2C.c: In function 'main':
+../External_EEPROM_I2C.c:19: warning: overflow in implicit constant conversion
+Finished building: ../External_EEPROM_I2C.c
+ 
+Building file: ../external_eeprom.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"external_eeprom.d" -MT"external_eeprom.o" -c -o "external_eeprom.o" "../external_eeprom.c"
+Finished building: ../external_eeprom.c
+ 
+Building file: ../gpio.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"gpio.d" -MT"gpio.o" -c -o "gpio.o" "../gpio.c"
+Finished building: ../gpio.c
+ 
+Building file: ../twi.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"twi.d" -MT"twi.o" -c -o "twi.o" "../twi.c"
+Finished building: ../twi.c
+ 
+Building target: I2C.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,I2C.map -mmcu=atmega16 -o "I2C.elf"  ./External_EEPROM_I2C.o ./external_eeprom.o ./gpio.o ./twi.o   
+Finished building target: I2C.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S I2C.elf  >"I2C.lss"
+Finished building: I2C.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 I2C.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    5976 bytes (36.5% Full)
+(.text + .data + .bootloader)
+
+Data:          8 bytes (0.8% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+23:05:11 Build Finished. 0 errors, 2 warnings. (took 1s.590ms)
+

@@ -1,0 +1,20 @@
+/*-----------------------------------------------------------------
+ * [FILE NAME]: CONTROL_FUNCTIONS.h
+ *
+ * [AUTHOR]: YOUSEF KHALED AHMED ZAYED
+ *
+ * [DATE CREATED]: 31/10/2021
+ *
+ * [DESCRIPTION]: header file for FUNCTIONS used in CONTROL-ECU
+ ------------------------------------------------------------------*/
+
+#ifndef CONTROL_FUNCTIONS_H_
+#define CONTROL_FUNCTIONS_H_
+
+#include "std_types.h"
+#define CONTROL_ECU_ready 1
+
+void CONTROL_receiveThePassword (uint8* password_string);
+void CONTROL_savingThePassword (uint8* password_string);
+
+#endif /* CONTROL_FUNCTIONS_H_ */

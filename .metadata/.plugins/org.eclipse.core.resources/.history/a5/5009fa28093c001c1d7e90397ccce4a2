@@ -1,0 +1,35 @@
+/*-----------------------------------------------------------------
+ * [FILE NAME]: HMI_FUNCTIONS.h
+ *
+ * [AUTHOR]: YOUSEF KHALED AHMED ZAYED
+ *
+ * [DATE CREATED]: 31/10/2021
+ *
+ * [DESCRIPTION]: header file for FUNCTIONS used in HMI-ECU
+ ------------------------------------------------------------------*/
+
+#ifndef HMI_FUNCTIONS_H_
+#define HMI_FUNCTIONS_H_
+
+#include "std_types.h"
+#define CONTROL_ECU_ready 1
+#define HMI_ECU_ready 2
+typedef enum {
+	theif , door_on
+}DOOR_STATUS;
+/*******************************************************
+ *              functions prototype                    *
+ *******************************************************/
+void HMI_firstTimeOrChangePassword (uint8* const password_string);
+void HMI_convertPasswordToString (uint8* const a_password_string);
+void HMI_sendThePassword (const uint8* const pass_ptr);
+void HMI_mainMenu (uint8* const a_password_string);
+void HMI_askForPassword (uint8* const a_password_string);
+void HMI_doorStatus (void);
+void HMI_doorOn (void);
+void HMI_doorHold (void);
+void HMI_doorOff (void);
+
+
+
+#endif /* HMI_FUNCTIONS_H_ */

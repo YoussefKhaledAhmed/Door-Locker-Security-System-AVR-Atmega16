@@ -1,0 +1,27 @@
+/*-------------------------------------------------------
+ * [FILE NAME]: HMI-ECU.c
+ *
+ * [AUTHOR]: YOUSEF KHALED AHMED ZAYED
+ *
+ * [DATE CREATED]: 27/10/2021
+ *
+ * [DESCRIPTION]: source file for HMI-ECU
+ -------------------------------------------------------*/
+
+#include "HMI_FUNCTIONS.h"
+
+int main()
+{
+	uint8 password_string[6] = {} , main_menu_choice = 0;
+	HMI_firstTimeOrChangePassword(password_string);
+	HMI_sendThePassword(password_string);
+	HMI_mainMenu();
+}
+
+
+
+
+
+
+
+

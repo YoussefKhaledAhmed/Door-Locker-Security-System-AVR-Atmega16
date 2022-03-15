@@ -1,0 +1,44 @@
+22:26:17 **** Build of configuration Debug for project timer_test ****
+make all 
+Building file: ../Exercise2.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"Exercise2.d" -MT"Exercise2.o" -c -o "Exercise2.o" "../Exercise2.c"
+../Exercise2.c: In function 'main':
+../Exercise2.c:61: warning: passing argument 1 of 'TIMER_setCallBack' from incompatible pointer type
+Finished building: ../Exercise2.c
+ 
+Building file: ../timer.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"timer.d" -MT"timer.o" -c -o "timer.o" "../timer.c"
+../timer.c: In function 'TIMER_setCallBack':
+../timer.c:248: warning: function return types not compatible due to 'volatile'
+../timer.c:248: warning: assignment from incompatible pointer type
+Finished building: ../timer.c
+ 
+Building target: timer_test.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,timer_test.map -mmcu=atmega16 -o "timer_test.elf"  ./Exercise2.o ./timer.o   
+Finished building target: timer_test.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S timer_test.elf  >"timer_test.lss"
+Finished building: timer_test.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 timer_test.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    1602 bytes (9.8% Full)
+(.text + .data + .bootloader)
+
+Data:         12 bytes (1.2% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+22:26:19 Build Finished. 0 errors, 3 warnings. (took 1s.561ms)
+

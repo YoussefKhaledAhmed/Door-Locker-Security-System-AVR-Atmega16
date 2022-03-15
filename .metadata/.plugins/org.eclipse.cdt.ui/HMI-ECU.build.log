@@ -1,0 +1,79 @@
+23:38:46 **** Build of configuration Debug for project HMI-ECU ****
+make all 
+Building file: ../HMI_ECU.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"HMI_ECU.d" -MT"HMI_ECU.o" -c -o "HMI_ECU.o" "../HMI_ECU.c"
+Finished building: ../HMI_ECU.c
+ 
+Building file: ../HMI_FUNCTIONS.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"HMI_FUNCTIONS.d" -MT"HMI_FUNCTIONS.o" -c -o "HMI_FUNCTIONS.o" "../HMI_FUNCTIONS.c"
+In file included from ../HMI_FUNCTIONS.c:16:
+c:/winavr-20100110/lib/gcc/../../avr/include/avr/delay.h:36:2: warning: #warning "This file has been moved to <util/delay.h>."
+In file included from c:/winavr-20100110/lib/gcc/../../avr/include/avr/delay.h:37,
+                 from ../HMI_FUNCTIONS.c:16:
+c:/winavr-20100110/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+../HMI_FUNCTIONS.c: In function 'HMI_openOrError':
+../HMI_FUNCTIONS.c:227: warning: passing argument 1 of 'TIMER_setCallBack' from incompatible pointer type
+../HMI_FUNCTIONS.c:252: warning: passing argument 1 of 'TIMER_setCallBack' from incompatible pointer type
+Finished building: ../HMI_FUNCTIONS.c
+ 
+Building file: ../gpio.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"gpio.d" -MT"gpio.o" -c -o "gpio.o" "../gpio.c"
+Finished building: ../gpio.c
+ 
+Building file: ../keypad.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"keypad.d" -MT"keypad.o" -c -o "keypad.o" "../keypad.c"
+Finished building: ../keypad.c
+ 
+Building file: ../lcd.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"lcd.d" -MT"lcd.o" -c -o "lcd.o" "../lcd.c"
+In file included from ../lcd.c:13:
+c:/winavr-20100110/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+../lcd.c: In function 'LCD_intgerToString':
+../lcd.c:185: warning: implicit declaration of function 'itoa'
+Finished building: ../lcd.c
+ 
+Building file: ../timer.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"timer.d" -MT"timer.o" -c -o "timer.o" "../timer.c"
+../timer.c: In function 'TIMER_setCallBack':
+../timer.c:240: warning: function return types not compatible due to 'volatile'
+../timer.c:240: warning: assignment from incompatible pointer type
+Finished building: ../timer.c
+ 
+Building file: ../uart.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"uart.d" -MT"uart.o" -c -o "uart.o" "../uart.c"
+Finished building: ../uart.c
+ 
+Building target: HMI-ECU.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,HMI-ECU.map -mmcu=atmega16 -o "HMI-ECU.elf"  ./HMI_ECU.o ./HMI_FUNCTIONS.o ./gpio.o ./keypad.o ./lcd.o ./timer.o ./uart.o   
+Finished building target: HMI-ECU.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S HMI-ECU.elf  >"HMI-ECU.lss"
+Finished building: HMI-ECU.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 HMI-ECU.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:   11940 bytes (72.9% Full)
+(.text + .data + .bootloader)
+
+Data:        313 bytes (30.6% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+23:38:47 Build Finished. 0 errors, 8 warnings. (took 1s.967ms)
+

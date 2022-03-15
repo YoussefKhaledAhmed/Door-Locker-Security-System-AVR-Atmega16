@@ -1,0 +1,51 @@
+18:45:17 **** Build of configuration Debug for project UART ****
+make all 
+Building file: ../.metadata/.plugins/org.eclipse.cdt.make.core/specs.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF".metadata/.plugins/org.eclipse.cdt.make.core/specs.d" -MT".metadata/.plugins/org.eclipse.cdt.make.core/specs.o" -c -o ".metadata/.plugins/org.eclipse.cdt.make.core/specs.o" "../.metadata/.plugins/org.eclipse.cdt.make.core/specs.c"
+Finished building: ../.metadata/.plugins/org.eclipse.cdt.make.core/specs.c
+ 
+Building file: ../Exercise1.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"Exercise1.d" -MT"Exercise1.o" -c -o "Exercise1.o" "../Exercise1.c"
+../Exercise1.c: In function 'main':
+../Exercise1.c:15: warning: unused variable 'Str'
+Finished building: ../Exercise1.c
+ 
+Building file: ../gpio.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"gpio.d" -MT"gpio.o" -c -o "gpio.o" "../gpio.c"
+Finished building: ../gpio.c
+ 
+Building file: ../uart.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega16 -DF_CPU=1000000UL -MMD -MP -MF"uart.d" -MT"uart.o" -c -o "uart.o" "../uart.c"
+Finished building: ../uart.c
+ 
+Building target: UART.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,UART.map -mmcu=atmega16 -o "UART.elf"  ./.metadata/.plugins/org.eclipse.cdt.make.core/specs.o  ./Exercise1.o ./gpio.o ./uart.o   
+Finished building target: UART.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S UART.elf  >"UART.lss"
+Finished building: UART.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega16 UART.elf
+AVR Memory Usage
+----------------
+Device: atmega16
+
+Program:    2570 bytes (15.7% Full)
+(.text + .data + .bootloader)
+
+Data:          8 bytes (0.8% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+18:45:19 Build Finished. 0 errors, 1 warnings. (took 1s.872ms)
+
